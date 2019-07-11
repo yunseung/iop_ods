@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ibkc.ods">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <!-- 추가 permission-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />      <!-- 백신 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />                 <!-- 백신 , 푸쉬 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />         <!-- one guard -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />          <!-- one guard -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />    <!-- one guard, file download -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />  <!-- one guard -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />     <!-- one guard -->
+
+    <application
+        android:name=".OdsApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:screenOrientation="sensorLandscape"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.WithoutActionBar">
+
+        <activity
+            android:name=".activity.IntroActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="sensorLandscape"></activity>
+
+        <activity
+            android:name="com.rosisit.idcardcapture.CameraActivity"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|keyboardHidden|uiMode|screenSize|locale|layoutDirection">
+
+        </activity>
+
+        <activity
+            android:name=".activity.SecondWebViewActivity"
+            android:screenOrientation="sensorLandscape"></activity>
+
+        <activity android:name=".activity.ImagePreviewWebViewActivity"
+            android:screenOrientation="sensorLandscape"></activity>
+
+        <activity
+            android:name=".activity.PopupWebViewActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Transparent"></activity>
+
+        <activity
+            android:name=".activity.ReportListPopupActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Transparent"></activity>
+
+        <activity
+            android:name=".activity.AddReportEquipGridActivity"
+            android:screenOrientation="sensorLandscape"></activity>
+
+        <activity
+            android:name=".activity.VisitPhotoGridActivity"
+            android:screenOrientation="sensorLandscape"></activity>
+
+
+        <!-- 보안 키패드 -->
+        <activity android:name="com.softsecurity.transkey.TransKeyActivity"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+
+        <!-- mVaccine Start-->
+        <!-- mVaccine Acitvity 추가 -->
+        <activity
+            android:name="com.TouchEn.mVaccine.b2b2c.activity.ScanActivity"
+            android:label="@string/mv_app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.TouchEn.mVaccine.b2b2c.activity.BackgroundScanActivity"
+            android:label="@string/mv_app_name"
+            android:theme="@android:style/Theme.Translucent"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.TouchEn.mVaccine.b2b2c.activity.ResultLogActivity"
+            android:exported="false"
+            android:label="@string/mv_app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.TouchEn.mVaccine.b2b2c.activity.BackgroundScan"
+            android:label="@string/mv_app_name"
+            android:theme="@android:style/Theme.Translucent"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.TouchEn.mVaccine.b2b2c.activity.BackgroundRootingCheck"
+            android:label="@string/mv_app_name"
+            android:theme="@android:style/Theme.Translucent"
+            tools:ignore="InnerclassSeparator" />
+        <!-- Android 운영체제에서 엠백신 스레드 종료처리 방지용 서비스 추가 -->
+        <service
+            android:name="com.TouchEn.mVaccine.b2b2c.service.OnInstallService"
+            android:process=":remote"
+            tools:ignore="InnerclassSeparator" />
+        <service
+            android:name="com.TouchEn.mVaccine.b2b2c.service.ScanService"
+            tools:ignore="InnerclassSeparator" />
+
+
+        <!-- mVaccine END -->
+
+        <!-- MDM -->
+        <!-- targets Android 7.0 'N' (API level 24) or higher -->
+        <provider
+            android:authorities="com.ibkc.ods.provider.MGuardSdkFileProvider"
+            android:name="com.raonsecure.touchen_mguard_4_0.provider.MGuardSdkFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/mguard_sdk_file_provider_paths"/>
+        </provider>
+
+    </application>
+
+</manifest>

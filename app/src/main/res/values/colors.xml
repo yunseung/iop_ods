@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="PrimaryColor">#d20b0d</color>
+    <color name="PrimaryDarkColor">#9a0b0d</color>
+    <color name="color_8a90a6">#8a90a6</color>
+    <color name="color_8a91a7">#8a91a7</color>
+    <color name="transparent">#00000000</color>
+    <color name="dim">#80FFFFFF</color>
+    <color name="color_gray_bottom_button">#8a91a7</color>
+    <color name="color_6e7591">#6e7591</color>
+    <color name="color_3a425b">#3a425b</color>
+    <color name="color_4b6bd0">#4b6bd0</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_4b6bd1">#4b6bd1</color>
+    <color name="color_aaaaaa">#aaaaaa</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_ccd0d2">#ccd0d2</color>
+    <color name="color_3ae4fd">#3ae4fd</color>
+
+
+    <!-- 보안 키패드 -->
+    <item name="blue" type="color">#FF33B5E5</item>
+    <item name="purple" type="color">#FFAA66CC</item>
+    <item name="green" type="color">#FF99CC00</item>
+    <item name="orange" type="color">#FFFFBB33</item>
+    <item name="red" type="color">#FFFF4444</item>
+    <item name="darkblue" type="color">#FF0099CC</item>
+    <item name="darkpurple" type="color">#FF9933CC</item>
+    <item name="darkgreen" type="color">#FF669900</item>
+    <item name="darkorange" type="color">#FFFF8800</item>
+    <item name="darkred" type="color">#FFCC0000</item>
+    <item name="testcolor" type="color">#FFCC0000</item>
+
+    <integer-array name="androidcolors">
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/green</item>
+        <item>@color/orange</item>
+        <item>@color/red</item>
+        <item>@color/darkblue</item>
+        <item>@color/darkpurple</item>
+        <item>@color/darkgreen</item>
+        <item>@color/darkorange</item>
+        <item>@color/darkred</item>
+        <item>@color/testcolor</item>
+    </integer-array>
+
+
+    <color name="index0">#ffffffff</color>
+    <color name="index1">#fff9f9f9</color>
+    <color name="index2">#fff5f5f5</color>
+    <color name="index3">#fff1f1f1</color>
+    <color name="index4">#ffe8e8e8</color>
+    <color name="index5">#ffe7e7e7</color>
+    <color name="index6">#ffd8d8d8</color>
+    <color name="index7">#ffd1d1d1</color>
+    <color name="index8">#ffc9c9c9</color>
+    <color name="index9">#ffb9b9b9</color>
+    <color name="index10">#ffb4b4b4</color>
+    <color name="index11">#ff9e9e9e</color>
+    <color name="index12">#ff999999</color>
+    <color name="index13">#ff666666</color>
+    <color name="index14">#ff444444</color>
+    <color name="index15">#ff333333</color>
+    <color name="index16">#ff000000</color>
+    <color name="index17">#ffff0000</color>
+    <color name="index18">#ff00ff00</color>
+    <color name="index19">#ff0000ff</color>
+    <color name="index20">#ffff00ff</color>
+    <color name="index21">#ff747474</color>
+    <color name="index22">#ff484e51</color>
+    <color name="index23">#ff2d3032</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="ff111111">#ff111111</color>
+    <color name="ff666666">#ff666666</color>
+    <color name="ff193c7a">#ff193c7a</color>
+    <color name="ff3d6fc6">#ff3d6fc6</color>
+    <color name="ff7f7f7f">#ff7f7f7f</color>
+    <color name="ffdedede">#ffdedede</color>
+    <color name="ff8ba9dd">#ff8ba9dd</color>
+</resources>

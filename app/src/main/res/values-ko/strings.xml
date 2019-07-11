@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 백신 -->
+    <string name="mv_app_name">TouchEn mVaccine</string>
+    <string name="mv_mVaccineScanning">TouchEn mVaccine이 구동 중입니다.</string>
+    <string name="mv_COMMON_COPYRIGHT">© 2013 RAONSECURE,Inc. All rights reserved.</string>
+    <string name="mv_dialog_stopdialog_textview">초후에 시간이 많이 걸리는 검사를 백그라운드 작업으로 변경합니다.</string>
+    <string name="mv_no">아니요</string>
+    <string name="mv_yes">예</string>
+    <string name="mv_msg_rootingexitapp">루팅폰에서는 서비스를 이용하실 수 없습니다.</string>
+    <string name="mv_msg_rootingyesorno">루팅폰입니다. 검사를 중지하실려면 예를  검사를 계속 진행하실려면 아니오를 누르세요</string>
+    <string name="mv_msg_rootingyes">루팅폰입니다. 스마트폰 보안에 영향을 주는 구조변경(탈옥,루팅)을 한폰에서 발생한 문제는 자사에서는 책임지지 않습니다. </string>
+    <string name="mv_count">검사파일수 : </string>
+    <string name="mv_infected">악성코드 발견 수 : </string>
+    <string name="mv_pattern">패턴버전 : </string>
+    <string name="mv_engine">엔진버전 : </string>
+    <string name="mv_dualengine">듀얼엔진버전 : </string>
+    <string name="mv_scan_result">검사결과</string>
+    <string name="mv_scan_result_msg">악성코드가 검출되었습니다. 삭제하시겠습니까? 삭제하지 않으면 스마트폰 내 정보가 해킹될 수 있습니다. </string>
+    <string name="mv_scan_detect_malware">TouchEn mVaccine이 악성코드를 탐지 하였습니다.</string>
+    <string name="mv_title_rootscan">루팅검사 </string>
+    <string name="mv_msg_rootapp">루팅관련 불법앱이 설치되어 있습니다.삭제 후 해당앱을 다시 실행해 주십시오. </string>
+    <string name="mv_msg_detect_malware_count"> 개의 악성코드를 발견하였습니다. </string>
+    <string name="mv_msg_surenot_delete">삭제하지 않은 앱이 있습니다. 삭제하지 않고 이 화면에서 나가시겠습니까?</string>
+    <string name="mv_delete">삭제</string>
+    <string name="mv_close">닫기</string>
+    <string name="mv_malware_name">악성코드명 : </string>
+    <string name="mv_risk_high">위험도 : 높음</string>
+    <string name="mv_stop">검사중지</string>
+    <string name="mv_scanning_middle_title">악성코드 검사 진행 중 . . .</string>
+    <string name="mv_path">검사경로: </string>
+    <string name="mv_msg_updateprogress">업데이트 진행 중입니다.\n네트워크 상태에 따라서 시간이 지연될 수 있습니다.</string>
+    <string name="mv_check_license">라이센스를 체크하는 중입니다.</string>
+    <string name="mv_license_expired">라이센스가 만료되었습니다.</string>
+    <string name="mv_license_not_matched">라이센스가 일치하지 않습니다.</string>
+    <string name="mv_siteid_error">잘못된 사이트ID 입니다.</string>
+    <string name="mv_sure_stop_scan">검사를 중지하시겠습니까?</string>
+    <!-- 백신 -->
+</resources>

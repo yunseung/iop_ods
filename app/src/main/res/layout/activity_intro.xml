@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/intro_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/progress_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:text="@string/init_intro"
+            android:textColor="@color/color_ffffff"
+            android:textSize="14dp" />
+
+        <!--<ProgressBar-->
+        <!--style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+        <!--android:id="@+id/progressBar"-->
+        <!--android:progress="0"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="146dp"-->
+        <!--android:layout_width="170dp"-->
+        <!--android:layout_height="5dp"-->
+        <!--android:progressDrawable="@drawable/custom_progressbar" />-->
+
+        <ImageView
+            android:id="@+id/progress_bar"
+            android:layout_width="170dp"
+            android:layout_height="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="146dp"
+            android:background="@drawable/c_progress_bar2"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+</layout>

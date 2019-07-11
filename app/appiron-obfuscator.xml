@@ -1,0 +1,195 @@
+<config>
+    <jars>
+        <dir in="${classesRoot}" out="${classesRoot}-obfuscated"/>
+    </jars>
+
+    <classpath>
+        <jar name="${androidJar}"/>
+        <jar name="${classpathJars}"/>
+    </classpath>
+
+    <keep-names>
+
+        <!-- Default Config..... -->
+        <class template="public class * instanceof android.app.Activity">
+            <method template="public void *(android.view.View)"/>
+        </class>
+        <class template="public class * instanceof android.app.Application"/>
+        <class template="public class * instanceof android.app.Service"/>
+        <class template="public class * instanceof android.view.View">
+            <method template="public void set*(**)"/>
+        </class>
+        <class template="public class * instanceof android.content.BroadcastReceiver"/>
+        <class template="public class * instanceof android.content.ContentProvider"/>
+        <class template="public class * instanceof android.app.backup.BackupAgentHelper"/>
+        <class template="public class * instanceof android.preference.Preference"/>
+        <class template="public class com.android.vending.licensing.ILicensingService"/>
+        <class template="public class com.google.android.vending.licensing.ILicensingService"/>
+        <class template="class * implements android.os.Parcelable">
+            <field template="public static final android.os.Parcelable*Creator *"/>
+            <method access="private+"/>
+        </class>
+        <class template="class * instanceof java.io.Serializable">
+            <method template="public *(**)"/>
+        </class>
+        <!--<class template="class *">
+            <field template="private+ android.os.Parcelable\$Creator *"/>
+            <method template="private+ createFromParcel(**)"/>
+            <method template="private+ newArray(**)"/>
+            <method template="private+ writeToParcel(**)"/>
+        </class>-->
+        <class template="public class * extends android.support.v4.app.FragmentActivity"/>
+        <class template="public class * extends android.support.v4.app.Fragment"/>
+        <class template="public class * extends android.support.v4.app.ListFragment"/>
+        <class template="class android.support.v7.appcompat.R">
+            <field access="private+"/>
+        </class>
+        <class template="class android.support.v7.appcompat.R\$*">
+            <field access="private+"/>
+        </class>
+        <class template="class com.example.user.appirondemo2.MainActivity">
+            <field access="private+"/>
+        </class>
+
+        <!-- .arr형태로 3rd party lib가 추가된 경우 난독화가 적용되므로 아래 설정을 추가해주어야함-->
+        <class template="class **.R">
+            <field access="private+"/>
+        </class>
+        <class template="class **.R\$**">
+            <field access="private+"/>
+        </class>
+
+        <!-- databinding 제외추가 -->
+        <class template="class com.android.databinding.**">
+            <method access="private+"/>
+        </class>
+        <class template="class android.databinding.**">
+            <method access="private+"/>
+        </class>
+        <class template="public class * extends android.databinding.ViewDataBinding*" >
+            <method access="private+"/>
+        </class>
+        <class template="public class * extends com.android.databinding.ViewDataBinding*" >
+            <method access="private+"/>
+        </class>
+
+        <!-- webView -->
+        <class template="class com.ibkc.ods.webview.**">
+            <field access="private+"/>
+            <method access="private+"/>
+        </class>
+
+        <!-- anotation -->
+        <class template="class com.ibkc.common.jsbridge.**">
+            <method access="private+"/>
+            <field access="private+" />
+        </class>
+
+        <!-- transkey -->
+        <class template="class com.softsecurity.transkey.**">
+            <method access="private+"/>
+            <field access="private+" />
+        </class>
+
+
+        <!-- 볼리 -->
+        <class template="class com.android.volley.**" >
+            <method access="private+" />
+        </class>
+        <class template="interface com.android.volley.**" >
+            <method access="private+" />
+        </class>
+
+        <!-- -keep class com.android.volley.** { *; }
+        -keep interface com.android.volley.** {*;}-->
+
+
+        <!--#Proguard rules for using green robot eventbus.
+        #'http://greenrobot.org/eventbus/'
+        -keepattributes *Annotation*
+        -keepclassmembers class ** {
+        @org.greenrobot.eventbus.Subscribe <methods>;
+        }
+        -keep enum org.greenrobot.eventbus.ThreadMode { *; }
+        -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+        <init>(java.lang.Throwable);
+        }-->
+
+        <!-- 테드 퍼미션 -->
+        <class template="class com.gun0912.tedpermission.**" >
+            <method access="private+" />
+        </class>
+        <!-- -keep class com.gun0912.tedpermission.** { *; }-->
+
+
+        <!-- ocr -->
+        <class template="class com.rosisit.**" >
+            <method access="private+" />
+        </class>
+
+        <!-- apache-->
+        <class template="class org.apache.commons.**" >
+            <method access="private+" />
+        </class>
+
+        <!-- 백신 모듈-->
+        <class template="class com.secureland.smartmedic.**" >
+            <method access="private+" />
+            <field access="private+" />
+        </class>
+
+        <!-- -keep class com.rosisit.** { *; }-->
+
+        <!--for ButterKnife를 사용하는 경우 추가...-->
+        <!--<class template="class *.*_ViewBinding">
+            <field access="private+" />
+            <method access="private+" />
+        </class>
+        <class template="class *.*\$\$ViewBinder">
+            <field access="private+" />
+            <method access="private+" />
+        </class>
+        <class template="class *">
+            <field template="@butterknife.* *"/>
+            <method template="@butterknife.* *(**)" />
+        </class>-->
+
+        <!-- javascript interface를 사용하는 class(혹은 inner class)인 경우 아래 추가 -->
+        <!--<class template="private+ class com.test.MainActivity\$Bridge">
+            <field access="private+" />
+            <method access="private+"/>
+        </class>-->
+
+
+
+
+        <!-- Custom Config..... -->
+        <!--<class template="class com.example.user.appirondemo2.MainActivity">
+            <field access="private+"/>
+            <method access="private+"/
+        </class>-->
+
+        <!--<class template="class com.example.user.appirondemo2.Test">
+        </class>-->
+
+    </keep-names>
+
+    <property name="string-encryption" value="enable"/>
+    <!--<property name="string-encryption" value="disable" apply2class="class com.example.user.appirondemo2.Test"/>-->
+    <property name="string-encryption-type" value="fast"/>
+
+    <property name="control-flow-obfuscation" value="enable"/>
+    <property name="extensive-flow-obfuscation" value="normal"/>
+
+    <property name="default-package" value="a.b.c.d"/>
+    <property name="force-default-package" value="enable"/>
+
+    <property name="classes-naming" value="abc"/>
+    <property name="methods-naming" value="iii"/>
+    <property name="fields-naming" value="iii"/>
+
+    <property name="member-reorder" value="enable"/>
+    <property name="line-numbers" value="keep"/>
+    <property name="log-file" value="${logFile}"/>
+
+</config>

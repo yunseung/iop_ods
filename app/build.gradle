@@ -1,0 +1,138 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.ibkc.ods"
+        minSdkVersion 19
+        targetSdkVersion 26
+
+        versionCode 10
+        versionName "1.2.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    applicationVariants.all { variant ->
+        variant.javaCompiler.doLast {
+            runAllatori(variant)
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(SIGNED_STORE_FILE)   // gradle.properties 파일 참조 앱 빌드키
+            storePassword SIGNED_STORE_PASSWORD // gradle.properties 파일 참조 앱 빌드키
+            keyAlias SIGNED_KEY_ALIAS           // gradle.properties 파일 참조 앱 빌드키
+            keyPassword SIGNED_KEY_PASSWORD     // gradle.properties 파일 참조 앱 빌드키
+            v1SigningEnabled true               // 앱빌드 방식 필수 값
+            v2SigningEnabled true               // 앱빌드 방식 필수 값.
+        }
+    }
+
+    buildTypes {
+
+        release {
+            signingConfig signingConfigs.release    // 빌드 키 이용
+            minifyEnabled false                     // 소스 축소
+            zipAlignEnabled true                    // 스토어 올리기위한 zip 정렬
+
+            //하단 부터 Build Variant에서 빌드선택후 빌드 하면 BuildConfig.Java파일에 변수가 생성됨.
+            buildConfigField "boolean", "IS_DEV",  "false"
+            buildConfigField "boolean", "IS_TEST",  "false"
+            buildConfigField "boolean", "IS_MDM_USE", "true"
+            buildConfigField "String",  "WEB_URL",  "\"https://ods.ibkc.co.kr\""
+            buildConfigField "String", "APPIRON_URL", "\"https://apprn.ibkc.co.kr/authCheck.call\"" //위변조 접속 url
+            buildConfigField "String", "MDM_URL", "\"https://mdm.ibkc.co.kr\"" //MDM 접속 url
+        }
+
+        ttest {
+            signingConfig signingConfigs.release
+
+            //하단 부터 Build Variant에서 빌드선택후 빌드 하면 BuildConfig.Java파일에 변수가 생성됨
+            buildConfigField "boolean", "IS_DEV", "false"
+            buildConfigField "boolean", "IS_TEST", "true"
+            buildConfigField "boolean", "IS_MDM_USE", "true"
+            buildConfigField "String", "WEB_URL", "\"https://odst.ibkc.co.kr:444\""
+            buildConfigField "String", "APPIRON_URL", "\"https://apprnt.ibkc.co.kr:444/authCheck.call\""    //위변조 접속 url
+            buildConfigField "String", "MDM_URL", "\"https://mdmt.ibkc.co.kr:444\"" //MDM 접속 url
+
+        }
+
+        debug{
+            signingConfig signingConfigs.release
+
+            //하단 부터 Build Variant에서 빌드선택후 빌드 하면 BuildConfig.Java파일에 변수가 생성됨
+            buildConfigField "boolean", "IS_DEV",  "true"
+            buildConfigField "boolean", "IS_TEST",  "false"
+            buildConfigField "boolean", "IS_MDM_USE", "false"
+            buildConfigField "String",  "WEB_URL",  "\"https://odsd.ibkc.co.kr:8080\""
+            buildConfigField "String", "APPIRON_URL", "\"https://apprnd.ibkc.co.kr:8080/authCheck.call\""   //위변조 접속 url
+            buildConfigField "String", "MDM_URL", "\"https://mdmt.ibkc.co.kr:444\"" //MDM 접속 url
+        }
+    }
+
+
+
+    dataBinding {
+        enabled = true
+    }
+
+    //여기서 생성된 앱의 이름을 바꿔준다
+    def formattedDate = new Date().format('yyyyMMdd_HHmm')
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "ibkc_ods_${variant.name}_${variant.versionName}_${formattedDate}.apk"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+}
+
+def runAllatori(variant) {
+    println "test: ${variant.javaCompile.classpath.getAsPath()}"
+    copy {
+        from "$projectDir/appiron-obfuscator.xml"
+        into "$buildDir/intermediates/classes/"
+        expand(classesRoot: variant.javaCompile.destinationDir,
+                androidJar: "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar",
+                classpathJars: variant.javaCompile.classpath.getAsPath(),
+                logFile: "appiron-obfuscator-log-${variant.name}.xml")
+        rename('appiron-obfuscator.xml', "appiron-obfuscator-${variant.name}.xml")
+    }
+
+    new File("${variant.javaCompile.destinationDir}-obfuscated").deleteDir()
+    javaexec {
+        main = 'com.allatori.Obfuscate'
+        classpath = files("$rootDir/appiron/appiron-obfuscate.1.4.jar")
+        args "$buildDir/intermediates/classes/appiron-obfuscator-${variant.name}.xml"
+    }
+    new File("${variant.javaCompile.destinationDir}").deleteDir()
+    new File("${variant.javaCompile.destinationDir}-obfuscated").renameTo(new File("${variant.javaCompile.destinationDir}"))
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // 기본 필수
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    // 기본 필수
+    implementation 'com.android.support:design:26.1.0'
+    // 기본 필수
+    implementation 'com.android.support:support-annotations:27.1.1'
+    // 사진 촬영 라이브러리 OCR 
+    implementation 'com.rosisit:imagerecog:1.0@aar'
+    // 클래스간 데이터 통신 이벤트 핸들러
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    // HttpClient 라이브러리.
+    implementation 'com.android.volley:volley:1.1.0'
+    // 퍼미션 체크
+    implementation 'gun0912.ted:tedpermission:2.2.0'
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs' // OCR lib 를 사용하기 위함.
+    }
+}
